@@ -1,5 +1,12 @@
 from times import compute_overlap_time, time_range
 
+import pytest
+
+
+def test_time_range_backwards():
+    with pytest.raises(ValueError, match="end_time must be greater than start_time"):
+        time_range("2010-01-12 12:00:00", "2010-01-12 10:00:00")
+
 def test_case():
     large = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
     short = time_range("2010-01-12 10:30:00", "2010-01-12 10:45:00", 2, 60)
